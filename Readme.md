@@ -55,11 +55,22 @@
 ### 5.1 普通Docker版本安装
 
 ```
-//安装docker
+//安装docker 
+//在centos7.x
 yum -y install docker
 
-//启动Docker服务
+//在centos8.x安装
+//安装参考：https://www.cnblogs.com/qq931399960/p/11338656.html
+//注意： 如果在安装docker-ce repo之前执行过yum -y install docker，则需要先执行yum remove docker卸载
+curl https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
+yum -y install docker-ce
+
+//安装完毕，启动Docker服务
 systemctl start docker
+加入开机启动
+
+systemctl enable docker
+systemctl daemon-reload
 
 //拉取Docker镜像
 docker pull honmashironeko/arl-docker
